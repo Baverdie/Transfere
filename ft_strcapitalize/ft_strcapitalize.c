@@ -1,42 +1,17 @@
-int ft_conditions_uppercase(char str, char str_n)
+char	*ft_strcapitalize(char *str)
 {
-    if (!((str_n >= 65 && str_n <= 90)
-            || (str_n >= 97 && str_n <= 122)
-            || (str_n >= 48 && str_n <= 57))
-            && (str >= 97 && str <= 122))
-        return (1);
-    else
-        return (0);
-}
+	int	i;
 
-int ft_conditions_lowercase(char str, char str_n)
-{
-    if ((str_n >= 65 && str_n <= 90)
-            || (str_n >= 97 && str_n <= 122)
-            || (str_n >= 48 && str_n <= 57))
-        return (1);
-    else
-        return (0);
-}
-
-char *ft_strcapitalize(char *str)
-{
-    int i;
-
-    i = 1;
-    if (str[0] >= 97 || str[0] <= 122)
-    {
-        str[0] -= 32;
-    }
-    while (str[i])
-    {
-        if (ft_conditions_uppercase(str[i], str[i - 1]) == 1)
-            str[i] += 32;
-        if (ft_conditions_lowercase(str[i], str[i - 1]) == 1)
-            str[i] -= 32;
-        i++;
-    }
-    return (str);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= 65 && str[i] <= 90)
+			str[i] += 32;
+		if ((str[i - 1] == 32) || (str[i - 1] < 65 || str[i - 1] > 90 && str[i - 1] < 97 || str[i - 1] > 122))
+		{
+			
+		}
+	}
 }
 
 #include <stdio.h>
