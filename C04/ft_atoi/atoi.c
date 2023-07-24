@@ -1,8 +1,10 @@
+#include <stdio.h>
+
 int ft_atoi(char *str)
 {
-    int		i;
-	int		s;
-	int		nb;
+	int i;
+	int s;
+	int nb;
 
 	i = 0;
 	s = 0;
@@ -23,14 +25,4 @@ int ft_atoi(char *str)
 	if (s % 2 == 1)
 		return (-nb);
 	return (nb);
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	char	str[] = "--++--+1362345678923456789";
-
-	printf("%d", ft_atoi(str));
-	return (0);
 }
