@@ -11,20 +11,26 @@ int	ft_len(int min, int max)
 int ft_ultimate_range(int **range, int min, int max)
 {
 	int	i;
-	int	*tab;
 
 	i = 0;
 	if (min >= max)
-		return (NULL);
+    {
+        *range = NULL;
+        return (0);
+    }
 	else
-		tab = malloc((ft_len(min, max) + 1) * sizeof(int));
+    {
+        *range = malloc((ft_len(min, max) + 1) * sizeof(int));
+        if (*range == NULL)
+            return (-1);
+    }
 	while (min < max)
 	{
-		tab[i] = min;
+		(*range)[i] = min;
 		min++;
 		i++;
 	}
-	return (tab);
+	return (i);
 }
 
 int ft_atoi(char *str)
@@ -54,18 +60,26 @@ int ft_atoi(char *str)
 	return (nb);
 }
 
-int main(int argc, char *argv[])
+#include <stdio.h>
+
+int main(int argc, char **argv)
 {
+	int *range;
 	int i;
-	int *tab;
+	int min;
+	int max;
 
 	i = 0;
-	if (argc != 3)
-		return (0);
-	tab = ft_ultimate_range(ft_atoi(argv[1]), ft_atoi(argv[2]));
-	while (i < ft_len(ft_atoi(argv[1]), ft_atoi(argv[2])))
+	(void)argc;
+	min = ft_atoi(argv[1]);
+	max = ft_atoi(argv[2]);
+	printf("min = %d\n", min);
+	printf("max = %d\n", max);
+	printf("ft_ultimate_range = %d\n", ft_ultimate_range(&range, min, max));
+	while (i < ft_ultimate_range(&range, min, max))
 	{
-		printf("%d\n", tab[i]);
+		printf("%d\n", range[i]);
 		i++;
 	}
+	return (0);
 }
