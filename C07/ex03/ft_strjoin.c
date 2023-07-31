@@ -1,60 +1,44 @@
 #include <stdlib.h>
+#include <stdio.h>
 
-int	ft_len(int min, int max)
+int	ft_len(char *str)
 {
-    int	r;
+	int	i;
 
-    r = max - min;
-    return (r);
+	while (str[i])
+		i++;
+	return (i);
 }
 
 char *ft_strjoin(int size, char **strs, char *sep)
 {
-    
-}
-
-int ft_atoi(char *str)
-{
+	char *tab;
 	int i;
-	int s;
-	int nb;
+	int j;
 
 	i = 0;
-	s = 0;
-	nb = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	j = 0;
+	while (*strs[i])
 		i++;
-	while (str[i] == '-' || str[i] == '+')
+	tab = malloc((size + (ft_len(sep) * i) + 1) * sizeof(char));
+	if (tab == NULL)
+		return (NULL);
+	i = 0;
+	while (*strs[i])
 	{
-		if (str[i] == '-')
-			s++;
+		while (strs[i][j])
+		{
+			tab[j] = strs[i][j];
+			j++;
+		}
+		j = 0;
+		while (sep[j])
+		{
+			tab[j] = sep[j];
+			j++;
+		}
+		j = 0;
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		nb = nb * 10 + (str[i] - 48);
-		i++;
-	}
-	if (s % 2 == 1)
-		return (-nb);
-	return (nb);
-}
-
-int main(int argc, char **argv)
-{
-    int i;
-    int *tab;
-    int min;
-    int max;
-
-    i = 0;
-    min = ft_atoi(argv[1]);
-    max = ft_atoi(argv[2]);
-    ft_strjoin(&tab, min, max);
-    while (i < max - min)
-    {
-        printf("%d\n", tab[i]);
-        i++;
-    }
-    return (0);
+	return (&*tab);
 }
